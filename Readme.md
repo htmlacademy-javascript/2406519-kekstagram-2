@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Марина Прокопьева](https://up.htmlacademy.ru/javascript-individual/2/user/2406519).
-* Наставник: `Неизвестно`.
+- Студент: [Марина Прокопьева](https://up.htmlacademy.ru/javascript-individual/2/user/2406519).
+- Наставник: `Андрей Ефимов`.
 
 ---
 
