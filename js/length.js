@@ -1,10 +1,10 @@
 // function declaration
-function getLengthDeclaration(string, maxLength){
+function getLengthDeclaration (string, maxLength) {
   return string.length <= maxLength;
 }
 
 // function  expression
-const getLengthExpression = function(string, maxLength){
+const getLengthExpression = function(string, maxLength) {
   return string.length <= maxLength;
 };
 
