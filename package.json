@@ -13,8 +13,10 @@
   "devDependencies": {
     "eslint": "8.48.0",
     "eslint-config-htmlacademy": "9.1.1",
+    "pre-commit": "1.2.2",
     "vite": "4.4.9"
   },
+  "pre-commit": "lint",
   "license": "MIT",
   "scripts": {
     "start": "vite --port 3000 --open",
