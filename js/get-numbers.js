@@ -1,11 +1,11 @@
 // 1 способ:
 const extractNumber = (payload) => {
+  const string = payload.toString ? payload.toString() : '';
   let result = '';
-  payload = payload.toString();
 
-  for (let i = 0; i < payload.length; i++) {
-    if (Number.isNaN(parseInt(payload[i], 10)) === false) {
-      result += payload[i];
+  for (let i = 0; i < string.length; i++) {
+    if (Number.isNaN(parseInt(string[i], 10)) === false) {
+      result += string[i];
     }
   }
   return result === '' ? NaN : Number(result);
