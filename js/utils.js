@@ -8,11 +8,11 @@ export const getRandomIntInclusive = (min, max) => {
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 };
 
-export const getRandomArrayItem = (item) => item[getRandomIntInclusive(0, item.length - 1)];
+export const getRandomArrayItem = (items) => items[getRandomIntInclusive(0, items.length - 1)];
 
-export const getRandomArrayItems = (item, min = 0, max = item.length) => {
+export const getRandomArrayItems = (items, min = 0, max = items.length) => {
   const length = getRandomIntInclusive(min, max);
-  return Array.from({ length }, () => getRandomArrayItem(item));
+  return Array.from({ length }, () => getRandomArrayItem(items));
 };
 
 export const generateTextFragment = (maxLength = DEFAULT_MAX_LENGTH, text = LOREM) => {
