@@ -26,3 +26,16 @@ export const getTextItems = (min = 0, max, text = LOREM) => {
   const items = text.split('. ');
   return getRandomArrayItems(items, min, max || items.length);
 };
+
+// Строка является полиндромом
+export const isPalindrome = (string = '') => {
+  const newString = string.replaceAll(' ', '').toLowerCase();
+  const reverseString = newString.split('').reverse().join('');
+  return reverseString === newString;
+};
+
+// Строка в пределах максимальной длины?
+export const isLengthUnderLimit = (string, maxLength) => string.length <= maxLength;
+
+export const getOnlyNumbers = (str) => Number(
+  [...str].filter((item) => !isNaN(parseInt(item, 10))).join('') || NaN);
