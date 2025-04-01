@@ -38,4 +38,5 @@ export const isPalindrome = (string = '') => {
 export const isLengthUnderLimit = (string, maxLength) => string.length <= maxLength;
 
 export const getOnlyNumbers = (str) => Number(
-  [...str].filter((item) => !isNaN(parseInt(item, 10))).join('') || NaN);
+  [...str].filter((item) => !isNaN(parseInt(item, 10))).join('') || NaN
+);

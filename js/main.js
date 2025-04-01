@@ -1,4 +1,6 @@
 import { generatePhotos } from './data';
+import { renderPictures } from './render-pictures';
 
-// eslint-disable-next-line no-console
-console.log(generatePhotos(25));
+const picturesElement = document.querySelector('.pictures');
+
+renderPictures(generatePhotos(25), picturesElement);

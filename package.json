@@ -19,6 +19,7 @@
   "pre-commit": "lint",
   "license": "MIT",
   "scripts": {
+    "dev": "npm start",
     "start": "vite --port 3000 --open",
     "lint": "eslint js/"
   },
