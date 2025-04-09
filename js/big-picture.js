@@ -5,11 +5,11 @@ const imageElement = previewElement.querySelector('.big-picture__img img');
 const likesElement = previewElement.querySelector('.likes-count');
 const commentsElement = previewElement.querySelector('.social__comments');
 const commentsCountElement = previewElement.querySelector('.social__comment-count');
-// const commentsTotalCountElement = previewElement.querySelector('.social__comment-total-count');
+const commentsTotalCountElement = previewElement.querySelector('.social__comment-total-count');
 const commentsLoaderElement = previewElement.querySelector('.comments-loader');
 const cancelElement = previewElement.querySelector('.big-picture__cancel');
 
-
+// TODO откроем позже
 commentsCountElement.classList.add('hidden');
 commentsLoaderElement.classList.add('hidden');
 
@@ -49,7 +49,7 @@ export const openBigPicture = (picture) => {
 
   descriptionElement.textContent = picture.description;
   likesElement.textContent = picture.likes;
-  commentsCountElement.textContent = picture.comments.length;
+  commentsTotalCountElement.textContent = picture.comments.length;
 
   commentsElement.innerHTML = picture.comments.map(getCommentTemplate).join('');
 
