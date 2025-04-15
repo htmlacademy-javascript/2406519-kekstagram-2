@@ -34,7 +34,7 @@ pristine.addValidator(
 pristine.addValidator(
   hashtagsElement,
   (value) => !value || hashtags.every((hashtag) => hashtag !== '#'),
-  'Хеш-тег не может состоять только из одной решётки.'
+  'Хештег не может состоять только из одной решётки.'
 );
 
 pristine.addValidator(
@@ -42,10 +42,6 @@ pristine.addValidator(
   (value) => !value || hashtags.every((hashtag) => hashtag.length <= 20),
   'Максимальная длина одного хэштега 20 символов, включая решётку.'
 );
-
-textElement.addEventListener('keydown', (event) => {
-  event.stopPropagation();
-});
 
 pristine.addValidator(
   hashtagsElement,
@@ -59,14 +55,18 @@ pristine.addValidator(
   'Нельзя указать больше пяти хэштегов.'
 );
 
+const onChangeFile = useModal(modalElement, () => {
+  pristine.reset();
+});
+
+textElement.addEventListener('keydown', (event) => {
+  event.stopPropagation();
+});
+
 hashtagsElement.addEventListener('input', () => {
   hashtags = hashtagsElement.value.trimEnd().split(' ').map((hashtag) => hashtag.toLocaleLowerCase());
   hashtagsSet = new Set(hashtags);
   pristine.validate(hashtagsElement);
-});
-
-const onChangeFile = useModal(modalElement, () => {
-  pristine.reset();
 });
 
 fileInputElement.addEventListener('change', onChangeFile);

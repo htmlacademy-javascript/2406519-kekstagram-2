@@ -31,4 +31,3 @@ export const useModal = (modalElement, onClose) => {
 
   return openModal;
 };
-
