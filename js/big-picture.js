@@ -1,28 +1,13 @@
 import { updateComments } from './comments.js';
+import { useModal } from './use-modal.js';
 
 const bigPictureElement = document.querySelector('.big-picture');
 const previewElement = bigPictureElement.querySelector('.big-picture__preview');
 const descriptionElement = previewElement.querySelector('.social__caption');
 const imageElement = previewElement.querySelector('.big-picture__img img');
 const likesElement = previewElement.querySelector('.likes-count');
-const cancelElement = previewElement.querySelector('.big-picture__cancel');
 
-const closeModal = () => {
-  bigPictureElement.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-
-  document.removeEventListener('keydown', onKeydown);
-};
-
-function onKeydown (event) {
-  if (event.key.toLowerCase().includes('esc')) {
-    closeModal();
-  }
-}
-
-cancelElement.addEventListener('click', () => {
-  closeModal();
-});
+const openModal = useModal(bigPictureElement);
 
 export const openBigPicture = (picture) => {
   imageElement.src = picture.url;
@@ -33,9 +18,7 @@ export const openBigPicture = (picture) => {
 
   updateComments(picture.comments);
 
-  bigPictureElement.classList.remove('hidden');
-  previewElement.scrollIntoView();
-  document.body.classList.add('modal-open');
+  openModal();
 
-  document.addEventListener('keydown', onKeydown);
+  previewElement.scrollIntoView();
 };
