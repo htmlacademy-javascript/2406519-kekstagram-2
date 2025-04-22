@@ -1,5 +1,5 @@
 import { updateComments } from './comments.js';
-import { useModal } from './use-modal.js';
+import { useModal } from './modal.js';
 
 const bigPictureElement = document.querySelector('.big-picture');
 const previewElement = bigPictureElement.querySelector('.big-picture__preview');
