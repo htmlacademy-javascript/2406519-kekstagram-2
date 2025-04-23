@@ -2,6 +2,22 @@ import { LOREM } from './texts.js';
 
 const DEFAULT_MAX_LENGTH = 100;
 
+/** Округление */
+export const round = (
+  /** Число, подлежащее округлению */
+  value,
+
+  /** Знаков после запятой (округление до соотв. разряда) */
+  decimals = 0,
+
+  /** 'ceil' | 'floor' | 'round' */
+  method = 'round',
+) => {
+  const coefficient = 10 ** decimals;
+
+  return Math[method](parseFloat(value) * coefficient) / coefficient;
+};
+
 export const getRandomIntInclusive = (min, max) => {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
