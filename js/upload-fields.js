@@ -4,7 +4,6 @@ export const useUploadFields = (formElement) => {
   const textElement = formElement.querySelector('.text');
   const hashtagsElement = textElement.querySelector('.text__hashtags');
 
-
   let hashtags = [];
   let hashtagsSet = new Set();
 

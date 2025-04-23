@@ -7,7 +7,7 @@ const descriptionElement = previewElement.querySelector('.social__caption');
 const imageElement = previewElement.querySelector('.big-picture__img img');
 const likesElement = previewElement.querySelector('.likes-count');
 
-const openModal = useModal(bigPictureElement);
+const { openModal } = useModal(bigPictureElement);
 
 export const openBigPicture = (picture) => {
   imageElement.src = picture.url;

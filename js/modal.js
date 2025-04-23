@@ -29,5 +29,5 @@ export const useModal = (modalElement, onClose) => {
     closeModal();
   });
 
-  return openModal;
+  return { openModal, closeModal };
 };

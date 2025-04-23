@@ -1,27 +1,46 @@
 import '../vendor/nouislider/nouislider.js';
+import { round } from './utils.js';
 
-const createOption = (max) => ({
+const DEFAULT_STEP = 0.1;
+
+const createOptions = (max, min, step) => ({
   range: {
-    min: 0,
+    min,
     max
   },
-  start: max
+  start: max,
+  step
 });
 
 export const useRange = (rangeElement, applyRange) => {
-  const value = 0;
+  let decimals = 1;
 
   const valueElement = rangeElement.querySelector('.effect-level__value');
   const sliderElement = rangeElement.querySelector('.effect-level__slider');
 
-  const slider = noUiSlider.create(sliderElement, {
-    connect: 'lower',
-    ...createOption(100)
+  noUiSlider.create(sliderElement, {
+    ...createOptions(1, 0, DEFAULT_STEP),
+    connect: 'lower'
+  });
+
+  sliderElement.noUiSlider.on('update', (rawValue) => {
+    const value = round(rawValue, decimals);
+    valueElement.value = value;
+    applyRange(value);
   });
 
   return {
-    update(max) {
-      sliderElement.noUiSlider.updateOption(createOption(max));
+    update({ max, min = 0, step = DEFAULT_STEP} = {}) {
+      if (max) {
+        decimals = step === 0.1 ? 1 : 0;
+
+        sliderElement.noUiSlider.updateOptions(createOptions(max, min, step));
+        rangeElement.hidden = false;
+      } else {
+        rangeElement.hidden = true;
+        valueElement.value = '';
+        applyRange(0);
+      }
     }
   };
 };
