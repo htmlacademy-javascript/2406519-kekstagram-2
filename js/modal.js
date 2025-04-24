@@ -9,6 +9,10 @@ export const useModal = (modalElement, onClose) => {
   };
 
   const closeModal = () => {
+    if (document.body.querySelector('[data-modal]')) {
+      return;
+    }
+
     modalElement.classList.add('hidden');
     document.body.classList.remove('modal-open');
 

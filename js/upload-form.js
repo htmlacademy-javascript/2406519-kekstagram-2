@@ -2,6 +2,7 @@ import { useModal } from './modal.js';
 import { useUploadFields } from './upload-fields.js';
 import { useScale } from './scale.js';
 import { useRange } from './range.js';
+import { postData } from './api.js';
 
 const formElement = document.querySelector('.img-upload__form');
 const fileInputElement = formElement.querySelector('.img-upload__input');
@@ -13,6 +14,8 @@ const rangeElement = modalElement.querySelector('.img-upload__effect-level');
 const previewSmallElements = modalElement.querySelectorAll('.effects__preview');
 const radioElements = modalElement.querySelectorAll('.effects__radio');
 const submitElement = modalElement.querySelectorAll('.img-upload__submit');
+
+const defaultPreview = previewElement.src;
 
 const effectOptions = {
   chrome: {
@@ -62,7 +65,7 @@ const resetForm = () => {
   formElement.reset();
   resetValidator();
   previewElement.style = '';
-  // setPreviewImages(defaultPreview);
+  setPreviewImages(defaultPreview);
 };
 const { closeModal, openModal } = useModal(modalElement, resetForm);
 
@@ -98,7 +101,7 @@ formElement.addEventListener('submit', async (event) => {
     submitElement.disabled = true;
 
     try {
-      // await postData(new FormData(formElement));
+      await postData(new FormData(formElement));
       closeModal();
     } catch {
       // Do nothing

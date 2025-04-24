@@ -22,7 +22,11 @@ export const renderPicture = (picture) => {
   return photoElement;
 };
 
-export const renderPictures = (pictures, element) => {
+export const renderPictures = (pictures = [], element) => {
+  if (!pictures.length) {
+    return;
+  }
+
   const fragment = document.createDocumentFragment();
 
   pictures.forEach((picture) => {

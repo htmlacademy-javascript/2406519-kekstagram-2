@@ -18,6 +18,6 @@ export const useScale = (scaleElement, applyScale) => {
     setValue(Math.min(scale + 0.25, 1));
   });
 
-  //Устанавливаемм первичный масштаб
+  // Устанавливаем первичный масштаб
   setValue();
 };

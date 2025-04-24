@@ -1,7 +1,8 @@
-import { generatePhotos } from './data';
-import { renderPictures } from './render-pictures';
 import './upload-form.js';
+import { getData } from './api.js';
+import { initFilters } from './filters.js';
 
-const picturesElement = document.querySelector('.pictures');
-
-renderPictures(generatePhotos(25), picturesElement);
+getData('/data')
+  .then((data) => {
+    initFilters(data);
+  });
