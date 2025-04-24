@@ -2,6 +2,14 @@ import { LOREM } from './texts.js';
 
 const DEFAULT_MAX_LENGTH = 100;
 
+/** Тасование массива */
+export const shuffle = (items) => {
+  for (let i = items.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [items[i], items[randomIndex]] = [items[randomIndex], items[i]];
+  }
+};
+
 /** Округление */
 export const round = (
   /** Число, подлежащее округлению */
@@ -16,6 +24,31 @@ export const round = (
   const coefficient = 10 ** decimals;
 
   return Math[method](parseFloat(value) * coefficient) / coefficient;
+};
+
+/**
+ * Устранение дребезга
+ *
+ * https://www.freecodecamp.org/news/javascript-debounce-example
+ */
+export const debounce = (callback, timeoutDelay = 500) => {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
+  let timeoutId;
+
+  return (...rest) => {
+    if (!timeoutId) {
+      callback.apply(this, rest);
+    }
+
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      timeoutId = undefined;
+    }, timeoutDelay);
+  };
 };
 
 export const getRandomIntInclusive = (min, max) => {
