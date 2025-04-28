@@ -10,7 +10,7 @@ const modalElement = formElement.querySelector('.img-upload__overlay');
 const scaleElement = modalElement.querySelector('.img-upload__scale');
 const previewElement = modalElement.querySelector('.img-upload__preview img');
 const rangeElement = modalElement.querySelector('.img-upload__effect-level');
-const submitElement = modalElement.querySelectorAll('.img-upload__submit');
+const submitElement = modalElement.querySelector('.img-upload__submit');
 
 const previewSmallElements = modalElement.querySelectorAll('.effects__preview');
 const radioElements = modalElement.querySelectorAll('.effects__radio');

@@ -9,6 +9,8 @@ const filterElements = filtersElement.querySelectorAll('.img-filters__button');
 
 const RANDOM_LIMIT = 10;
 
+const renderWithDebounce = debounce(renderPictures);
+
 const getPhotosByFilter = (photos, filterName) => {
   if (filterName === 'random') {
     const clonedPhotos = [...photos];
@@ -28,8 +30,7 @@ const setFilter = (activeElement, photos) => {
     if (filterElement === activeElement) {
       const data = getPhotosByFilter(photos, filterElement.id.replace('filter-', ''));
 
-      picturesElement.querySelectorAll('.picture').forEach((element) => element.remove());
-      renderPictures(data, picturesElement);
+      renderWithDebounce(data, picturesElement);
 
       filterElement.classList.add('img-filters__button--active');
     } else {
@@ -42,10 +43,10 @@ export const initFilters = (photos) => {
   // Начальная отрисовка с дефолтным фильтром
   renderPictures(photos, picturesElement);
 
-  filterElements.forEach((filterElement) => {
-    filterElement.addEventListener('click', debounce(({ currentTarget }) => {
-      setFilter(currentTarget, photos);
-    }));
+  filtersElement.addEventListener('click', ({ target }) => {
+    if (target.classList.contains('img-filters__button')) {
+      setFilter(target, photos);
+    }
   });
 
   containerElement.classList.remove('img-filters--inactive');

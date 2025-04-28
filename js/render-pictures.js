@@ -27,6 +27,8 @@ export const renderPictures = (pictures = [], element) => {
     return;
   }
 
+  element.querySelectorAll('.picture').forEach((itemElement) => itemElement.remove());
+
   const fragment = document.createDocumentFragment();
 
   pictures.forEach((picture) => {

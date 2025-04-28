@@ -1,6 +1,7 @@
 import { LOREM } from './texts.js';
 
 const DEFAULT_MAX_LENGTH = 100;
+const DEFAULT_TIMER_DELAY = 500;
 
 /** Тасование массива */
 export const shuffle = (items) => {
@@ -31,23 +32,21 @@ export const round = (
  *
  * https://www.freecodecamp.org/news/javascript-debounce-example
  */
-export const debounce = (callback, timeoutDelay = 500) => {
+export const debounce = (callback, timeoutDelay = DEFAULT_TIMER_DELAY) => {
   // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
   // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
   let timeoutId;
 
   return (...rest) => {
-    if (!timeoutId) {
-      callback.apply(this, rest);
-    }
-
     // Перед каждым новым вызовом удаляем предыдущий таймаут,
     // чтобы они не накапливались
     clearTimeout(timeoutId);
 
-    timeoutId = setTimeout(() => {
-      timeoutId = undefined;
-    }, timeoutDelay);
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+    // Таким образом цикл "поставить таймаут - удалить таймаут" будет выполнятся,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
   };
 };
 
