@@ -4,30 +4,26 @@ const commentsLoaderElement = wrapperElement.querySelector('.comments-loader');
 const commentsShownCountElement = wrapperElement.querySelector('.social__comment-shown-count');
 const commentsTotalCountElement = wrapperElement.querySelector('.social__comment-total-count');
 
+const commentSampleElement = commentsElement.querySelector('.social__comment');
+
 const COMMENTS_PER_PAGE = 5;
 let shownCommentsCount = 0;
 let comments = [];
-
-const getCommentTemplate = ({ avatar, message, name }) => `
-<img
-  class="social__picture"
-  src="${avatar}"
-  alt="${name}"
-  width="35"
-  height="35"
->
-<p class="social__text">${message}</p>
-`;
 
 const addComments = () => {
   const fragment = document.createDocumentFragment();
   const newCount = shownCommentsCount + COMMENTS_PER_PAGE;
   const slicedComments = comments.slice(shownCommentsCount, newCount);
 
-  slicedComments.forEach((comment) => {
-    const itemElement = document.createElement('li');
-    itemElement.classList.add('social__comment');
-    itemElement.innerHTML = getCommentTemplate(comment);
+  slicedComments.forEach(({ avatar, message, name }) => {
+    const itemElement = commentSampleElement.cloneNode(true);
+    const imageElement = itemElement.querySelector('img');
+    imageElement.src = avatar;
+    imageElement.alt = name;
+
+    const messageElement = itemElement.querySelector('p');
+    messageElement.textContent = message;
+
     fragment.append(itemElement);
   });
 

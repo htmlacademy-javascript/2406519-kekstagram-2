@@ -7,11 +7,13 @@ const containerElement = document.querySelector('.img-filters');
 const filtersElement = containerElement.querySelector('.img-filters__form');
 const filterElements = filtersElement.querySelectorAll('.img-filters__button');
 
+const RANDOM_LIMIT = 10;
+
 const getPhotosByFilter = (photos, filterName) => {
   if (filterName === 'random') {
     const clonedPhotos = [...photos];
     shuffle(clonedPhotos);
-    return clonedPhotos.slice(0, 10);
+    return clonedPhotos.slice(0, RANDOM_LIMIT);
   }
 
   if (filterName === 'discussed') {
@@ -40,11 +42,11 @@ export const initFilters = (photos) => {
   // Начальная отрисовка с дефолтным фильтром
   renderPictures(photos, picturesElement);
 
-  filtersElement.addEventListener('click', debounce(({ target }) => {
-    if (target.classList.contains('img-filters__button')) {
-      setFilter(target, photos);
-    }
-  }));
+  filterElements.forEach((filterElement) => {
+    filterElement.addEventListener('click', debounce(({ currentTarget }) => {
+      setFilter(currentTarget, photos);
+    }));
+  });
 
   containerElement.classList.remove('img-filters--inactive');
 };

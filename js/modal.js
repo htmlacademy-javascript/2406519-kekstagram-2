@@ -9,7 +9,7 @@ export const useModal = (modalElement, onClose) => {
   };
 
   const closeModal = () => {
-    if (document.body.querySelector('[data-modal]')) {
+    if (document.body.querySelector('[data-overmodal]')) {
       return;
     }
 

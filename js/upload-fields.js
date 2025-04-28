@@ -1,5 +1,8 @@
 import '../vendor/pristine/pristine.min.js';
 
+const HASHTAGS_LIMIT = 5;
+const HASHTAGS_MAXLENGTH = 20;
+
 export const useUploadFields = (formElement) => {
   const textElement = formElement.querySelector('.text');
   const hashtagsElement = textElement.querySelector('.text__hashtags');
@@ -36,8 +39,8 @@ export const useUploadFields = (formElement) => {
 
   pristine.addValidator(
     hashtagsElement,
-    (value) => !value || hashtags.every((hashtag) => hashtag.length <= 20),
-    'Максимальная длина одного хэштега 20 символов, включая решётку.'
+    (value) => !value || hashtags.every((hashtag) => hashtag.length <= HASHTAGS_MAXLENGTH),
+    `Максимальная длина одного хэштега ${HASHTAGS_MAXLENGTH} символов, включая решётку.`
   );
 
   pristine.addValidator(
@@ -48,8 +51,8 @@ export const useUploadFields = (formElement) => {
 
   pristine.addValidator(
     hashtagsElement,
-    () => hashtags.length <= 5,
-    'Нельзя указать больше пяти хэштегов.'
+    () => hashtags.length <= HASHTAGS_LIMIT,
+    `Нельзя указать больше ${HASHTAGS_LIMIT} хэштегов.`
   );
 
   textElement.addEventListener('keydown', (event) => {
@@ -57,7 +60,7 @@ export const useUploadFields = (formElement) => {
   });
 
   hashtagsElement.addEventListener('input', () => {
-    hashtags = hashtagsElement.value.trimEnd().split(' ').map((hashtag) => hashtag.toLocaleLowerCase());
+    hashtags = hashtagsElement.value.trimEnd().split(' ').filter(Boolean).map((hashtag) => hashtag.toLocaleLowerCase());
     hashtagsSet = new Set(hashtags);
     pristine.validate(hashtagsElement);
   });
