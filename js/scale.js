@@ -1,3 +1,5 @@
+const SCALE_STEP = 0.25;
+
 export const useScale = (scaleElement, applyScale) => {
   let scale = 1;
 
@@ -12,10 +14,10 @@ export const useScale = (scaleElement, applyScale) => {
   };
 
   smallerElement.addEventListener('click', () => {
-    setValue(Math.max(scale - 0.25, 0.25));
+    setValue(Math.max(scale - SCALE_STEP, SCALE_STEP));
   });
   biggerElement.addEventListener('click', () => {
-    setValue(Math.min(scale + 0.25, 1));
+    setValue(Math.min(scale + SCALE_STEP, 1));
   });
 
   // Устанавливаем первичный масштаб

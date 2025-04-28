@@ -1,3 +1,5 @@
+const TIME_TO_SHOW = 5000;
+
 const templates = {
   dataError: document.querySelector('#data-error').content,
   error: document.querySelector('#error').content,
@@ -30,7 +32,7 @@ export const showStatus = (mode) => {
       }
     });
   } else {
-    setTimeout(close, 5000);
+    setTimeout(close, TIME_TO_SHOW);
   }
 
   document.body.append(element);
