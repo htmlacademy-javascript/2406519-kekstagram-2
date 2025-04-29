@@ -99,13 +99,9 @@ formElement.addEventListener('submit', async (event) => {
   const valid = validate();
   if (valid) {
     submitElement.disabled = true;
+    resetValidator();
 
-    try {
-      await postData(new FormData(formElement));
-      closeModal();
-    } catch {
-      // Do nothing
-    }
+    await postData(new FormData(formElement), closeModal);
 
     submitElement.disabled = false;
   }
