@@ -1,7 +1,7 @@
 import '../vendor/pristine/pristine.min.js';
 
 const HASHTAGS_LIMIT = 5;
-const HASHTAGS_MAXLENGTH = 20;
+const HASHTAG_MAXLENGTH = 20;
 
 export const useUploadFields = (formElement) => {
   const textElement = formElement.querySelector('.text');
@@ -39,8 +39,8 @@ export const useUploadFields = (formElement) => {
 
   pristine.addValidator(
     hashtagsElement,
-    (value) => !value || hashtags.every((hashtag) => hashtag.length <= HASHTAGS_MAXLENGTH),
-    `Максимальная длина одного хэштега ${HASHTAGS_MAXLENGTH} символов, включая решётку.`
+    (value) => !value || hashtags.every((hashtag) => hashtag.length <= HASHTAG_MAXLENGTH),
+    `Максимальная длина одного хэштега ${HASHTAG_MAXLENGTH} символов, включая решётку.`
   );
 
   pristine.addValidator(

@@ -2,7 +2,7 @@ import { showStatus } from './status.js';
 
 const BASE_URL = 'https://31.javascript.htmlacademy.pro/kekstagram';
 
-export const fetchData = async ({ url = '', body = null, method = 'GET' } = {}) => {
+export const fetchData = async ({ url = '/', body = null, method = 'GET' } = {}) => {
   const response = await fetch(`${BASE_URL}${url}`, { body, method });
   if (!response.ok) {
     throw new Error('');
@@ -19,12 +19,12 @@ export const getData = async (url) => {
   }
 };
 
-export const postData = async (body, url) => {
+export const postData = async (body, handleSuccess, url) => {
   try {
     await fetchData({ body, url, method: 'POST' });
+    handleSuccess();
     showStatus('success');
   } catch (error) {
     showStatus('error');
-    throw error;
   }
 };

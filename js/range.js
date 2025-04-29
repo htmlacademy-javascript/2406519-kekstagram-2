@@ -5,7 +5,6 @@ const DEFAULT_STEP = 0.1;
 const DEFAULT_DECIMALS = 1;
 const DEFAULT_MAX = 1;
 
-
 const createOptions = (max, min, step) => ({
   range: {
     min,
