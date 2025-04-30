@@ -1,13 +1,13 @@
 import { debounce, shuffle } from './utils';
 import { renderPictures } from './render-pictures';
 
+const RANDOM_LIMIT = 10;
+
 const picturesElement = document.querySelector('.pictures');
 
 const containerElement = document.querySelector('.img-filters');
 const filtersElement = containerElement.querySelector('.img-filters__form');
 const filterElements = filtersElement.querySelectorAll('.img-filters__button');
-
-const RANDOM_LIMIT = 10;
 
 const renderWithDebounce = debounce(renderPictures);
 
