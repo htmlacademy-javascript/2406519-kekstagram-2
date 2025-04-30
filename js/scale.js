@@ -22,4 +22,6 @@ export const useScale = (scaleElement, applyScale) => {
 
   // Устанавливаем первичный масштаб
   setValue();
+
+  return setValue;
 };

@@ -61,17 +61,19 @@ const setPreviewImages = (src) => {
   });
 };
 
+const setScale = useScale(scaleElement, (scale = 1) => {
+  previewElement.style.transform = `scale(${scale})`;
+});
+
 const resetForm = () => {
   formElement.reset();
+  setScale();
   resetValidator();
   previewElement.style = '';
   setPreviewImages(defaultPreview);
 };
-const { closeModal, openModal } = useModal(modalElement, resetForm);
 
-useScale(scaleElement, (scale = 1) => {
-  previewElement.style.transform = `scale(${scale})`;
-});
+const { closeModal, openModal } = useModal(modalElement, resetForm);
 
 const slider = useRange(rangeElement, (value) => {
   const { getCssFilter } = effectOptions[formElement.effect.value] || {};

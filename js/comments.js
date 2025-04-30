@@ -1,3 +1,5 @@
+const COMMENTS_PER_PAGE = 5;
+
 const wrapperElement = document.querySelector('.social');
 const commentsElement = wrapperElement.querySelector('.social__comments');
 const commentsLoaderElement = wrapperElement.querySelector('.comments-loader');
@@ -6,7 +8,6 @@ const commentsTotalCountElement = wrapperElement.querySelector('.social__comment
 
 const commentSampleElement = commentsElement.querySelector('.social__comment');
 
-const COMMENTS_PER_PAGE = 5;
 let shownCommentsCount = 0;
 let comments = [];
 
